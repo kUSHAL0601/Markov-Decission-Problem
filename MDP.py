@@ -88,11 +88,11 @@ while True:
 		old_val=arr[x][y]
 		if(x-1>=0 and arr[x-1][y]!="WALL"):
 			new_val+=0.8*arr[x-1][y];
-			if(y-1>=0):
+			if(y-1>=0 and arr[x][y-1]!="WALL"):
 				new_val+=0.1*arr[x][y-1];
 			else:
 				new_val+=0.1*old_val;
-			if(y+1<m):
+			if(y+1<m and arr[x][y+1]!="WALL"):
 				new_val+=0.1*arr[x][y+1];
 			else:
 				new_val+=0.1*old_val;
@@ -100,11 +100,11 @@ while True:
 		new_val=0.0
 		if(x+1<n and arr[x+1][y]!="WALL"):
 			new_val+=0.8*arr[x+1][y];
-			if(y-1>=0):
+			if(y-1>=0 and arr[x][y-1]!="WALL"):
 				new_val+=0.1*arr[x][y-1];
 			else:
 				new_val+=0.1*old_val;
-			if(y+1<m):
+			if(y+1<m and arr[x][y+1]!="WALL"):
 				new_val+=0.1*arr[x][y+1];
 			else:
 				new_val+=0.1*old_val;
@@ -112,11 +112,11 @@ while True:
 		new_val=0.0
 		if(y+1<m and arr[x][y+1]!="WALL"):
 			new_val+=0.8*arr[x][y+1];
-			if(x-1>=0):
+			if(x-1>=0 and arr[x-1][y]!="WALL"):
 				new_val+=0.1*arr[x-1][y];
 			else:
 				new_val+=0.1*old_val;
-			if(x+1<n):
+			if(x+1<n and arr[x+1][y]!="WALL"):
 				new_val+=0.1*arr[x+1][y];
 			else:
 				new_val+=0.1*old_val;
@@ -124,17 +124,17 @@ while True:
 		new_val=0.0
 		if(y-1>=0 and arr[x][y-1]!="WALL"):
 			new_val+=0.8*arr[x][y-1];
-			if(x-1>=0):
+			if(x-1>=0 and arr[x-1][y]!="WALL"):
 				new_val+=0.1*arr[x-1][y];
 			else:
 				new_val+=0.1*old_val;
-			if(x+1<n):
+			if(x+1<n and arr[x+1][y]!="WALL"):
 				new_val+=0.1*arr[x+1][y];
 			else:
 				new_val+=0.1*old_val;
 		max_val=max(max_val,new_val)
 		new_val=0.0
-		arr[x][y]=max_val-((abs(start_x-x)+abs(start_y-y))*step_cost)
+		arr[x][y]=max_val-step_cost
 	flag=0
 	# print(arr[0][0])
 	for i in visiting_order:
