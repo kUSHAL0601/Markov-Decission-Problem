@@ -78,7 +78,9 @@ while queue:
 			visited[i]=True
 
 # print(visiting_order)
+count=0
 while True:
+	count+=1
 	old_arr=copy.deepcopy(arr)
 	for i in visiting_order:
 		x=i[0]
@@ -134,7 +136,7 @@ while True:
 				new_val+=0.1*old_val;
 		max_val=max(max_val,new_val)
 		new_val=0.0
-		arr[x][y]=max_val-step_cost
+		arr[x][y]=max_val+step_cost
 	flag=0
 	# print(arr[0][0])
 	for i in visiting_order:
@@ -144,8 +146,14 @@ while True:
 			flag=1
 			break
 	if(flag==0):
+		print("\n\n\nFinal Iteration: \n\n\n")
 		for i in range(n):
 			for j in range(m):
 				print(arr[i][j],end=' ')
 			print()
 		break
+	print("\n\n\nIteration: "+str(count)+"\n\n\n")
+	for i in range(n):
+		for j in range(m):
+			print(arr[i][j],end=' ')
+		print()
