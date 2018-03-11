@@ -11,7 +11,7 @@ arr=[]
 for it in range(n):
 	i=input()
 	i=i.split()
-	i = list(map(int, i))
+	i = list(map(float, i))
 	arr.append(i)
 # print(arr)
 print("Enter e w:   ",end='')
@@ -77,7 +77,7 @@ while queue:
 			queue.append(i)
 			visited[i]=True
 
-# print(visiting_order)
+print(visiting_order)
 count=0
 while True:
 	count+=1
@@ -85,7 +85,7 @@ while True:
 	for i in visiting_order:
 		x=i[0]
 		y=i[1]
-		max_val=-500000000000
+		max_val=-500000000000.0
 		new_val=0.0
 		old_val=arr[x][y]
 		if(x-1>=0 and arr[x-1][y]!="WALL"):
@@ -98,7 +98,8 @@ while True:
 				new_val+=0.1*arr[x][y+1];
 			else:
 				new_val+=0.1*old_val;
-		max_val=max(max_val,new_val)
+		if new_val!=0.0:
+			max_val=max(max_val,new_val)
 		new_val=0.0
 		if(x+1<n and arr[x+1][y]!="WALL"):
 			new_val+=0.8*arr[x+1][y];
@@ -110,7 +111,8 @@ while True:
 				new_val+=0.1*arr[x][y+1];
 			else:
 				new_val+=0.1*old_val;
-		max_val=max(max_val,new_val)
+		if new_val!=0.0:
+			max_val=max(max_val,new_val)
 		new_val=0.0
 		if(y+1<m and arr[x][y+1]!="WALL"):
 			new_val+=0.8*arr[x][y+1];
@@ -122,7 +124,8 @@ while True:
 				new_val+=0.1*arr[x+1][y];
 			else:
 				new_val+=0.1*old_val;
-		max_val=max(max_val,new_val)
+		if new_val!=0.0:
+			max_val=max(max_val,new_val)
 		new_val=0.0
 		if(y-1>=0 and arr[x][y-1]!="WALL"):
 			new_val+=0.8*arr[x][y-1];
@@ -134,7 +137,8 @@ while True:
 				new_val+=0.1*arr[x+1][y];
 			else:
 				new_val+=0.1*old_val;
-		max_val=max(max_val,new_val)
+		if new_val!=0.0:
+			max_val=max(max_val,new_val)
 		new_val=0.0
 		arr[x][y]=max_val+step_cost
 	flag=0
